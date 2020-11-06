@@ -1,16 +1,33 @@
 package com.gft.desafiomvc.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
+import javax.validation.constraints.*;
 import java.math.BigInteger;
-import java.text.DateFormat;
 import java.util.Date;
 
-public class vaga {
+@Entity
+public class Vaga {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private BigInteger id;
-    private DateFormat abertura_vaga;
+
+    @NotNull(message = "Data de abertura não pode ser nula.")
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @Temporal(TemporalType.DATE)
+    private Date abertura_vaga;
+
     private String codigo_vaga;
+
+    @NotBlank(message = "Favor descrição da vaga.")
     private String descricao_vaga;
+
+    @NotBlank(message = "Favor preencher o campo do projeto.")
     private String projeto;
+
+    @NotNull(message = "Quantidade de vagas não pode ser nula.")
     private int qtd_vaga;
 
     public BigInteger getId() {
@@ -21,11 +38,11 @@ public class vaga {
         this.id = id;
     }
 
-    public DateFormat getAbertura_vaga() {
+    public Date getAbertura_vaga() {
         return abertura_vaga;
     }
 
-    public void setAbertura_vaga(DateFormat abertura_vaga) {
+    public void setAbertura_vaga(Date abertura_vaga) {
         this.abertura_vaga = abertura_vaga;
     }
 

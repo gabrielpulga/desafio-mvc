@@ -1,17 +1,35 @@
 package com.gft.desafiomvc.model;
 
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.validation.constraints.NotBlank;
 import java.math.BigInteger;
+import java.util.List;
 
-public class gft {
+@Entity
+public class Gft {
 
+    @OneToMany(mappedBy="gft")
+    private List<Funcionario> funcionarioList;
+
+    @Id
     private BigInteger id;
+
     private String cep;
     private String cidade;
     private String endereco;
     private String estado;
     private String nome;
     private String telefone;
+
+    public List<Funcionario> getFuncionarioList() {
+        return funcionarioList;
+    }
+
+    public void setFuncionarioList(List<Funcionario> funcionarioList) {
+        this.funcionarioList = funcionarioList;
+    }
 
     public BigInteger getId() {
         return id;
