@@ -6,22 +6,27 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Vaga {
 
+    @ManyToMany
+    private List<Tecnologia> tecnologia;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+    private Long id;
 
     @NotNull(message = "Data de abertura não pode ser nula.")
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date abertura_vaga;
 
-    private String codigo_vaga;
+    @NotBlank(message = "Favor preencher o código da vaga.")
+    private String codigo;
 
-    @NotBlank(message = "Favor descrição da vaga.")
+    @NotBlank(message = "Favor prencher descrição da vaga.")
     private String descricao_vaga;
 
     @NotBlank(message = "Favor preencher o campo do projeto.")
@@ -30,11 +35,11 @@ public class Vaga {
     @NotNull(message = "Quantidade de vagas não pode ser nula.")
     private int qtd_vaga;
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -46,12 +51,12 @@ public class Vaga {
         this.abertura_vaga = abertura_vaga;
     }
 
-    public String getCodigo_vaga() {
-        return codigo_vaga;
+    public String getCodigo() {
+        return codigo;
     }
 
-    public void setCodigo_vaga(String codigo_vaga) {
-        this.codigo_vaga = codigo_vaga;
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
     }
 
     public String getDescricao_vaga() {

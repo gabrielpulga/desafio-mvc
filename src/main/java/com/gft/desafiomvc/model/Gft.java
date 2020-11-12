@@ -14,7 +14,7 @@ public class Gft {
     private List<Funcionario> funcionarioList;
 
     @Id
-    private BigInteger id;
+    private Long id;
 
     private String cep;
     private String cidade;
@@ -31,11 +31,11 @@ public class Gft {
         this.funcionarioList = funcionarioList;
     }
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

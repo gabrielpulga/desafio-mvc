@@ -1,7 +1,9 @@
 package com.gft.desafiomvc.controller;
 
 import com.gft.desafiomvc.model.Funcionario;
+import com.gft.desafiomvc.model.Gft;
 import com.gft.desafiomvc.repository.FuncionariosRepository;
+import com.gft.desafiomvc.repository.GftRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -23,10 +25,13 @@ public class funcionarioController {
     @Autowired
     private FuncionariosRepository funcionariosRepository;
 
+    @Autowired
+    private GftRepository gftRepository;
+
     @RequestMapping
     public ModelAndView pesquisar(@RequestParam(defaultValue = "" +
             "") String nome) {
-        List<Funcionario> funcionarioList = funcionariosRepository.findTitulosByNomeContaining(nome);
+        List<Funcionario> funcionarioList = funcionariosRepository.findFuncionariosByAlocadoIsFalseAndNomeIsContaining(nome);
 
         ModelAndView modelAndView = new ModelAndView("funcionarios");
         modelAndView.addObject("funcionarios", funcionarioList);
@@ -51,12 +56,17 @@ public class funcionarioController {
             // TODO: Salvar no banco de dados
             funcionariosRepository.save(funcionario);
 
-            redirectAttributes.addFlashAttribute("mensagem", "Titulo salvo com sucesso.");
+            redirectAttributes.addFlashAttribute("mensagem", "Funcionário salvo com sucesso.");
             return "redirect:/wa/funcionarios/novo";
         } catch (IllegalArgumentException e) {
             errors.rejectValue("inicio_wa", null, e.getMessage());
             errors.rejectValue("termino_wa", null, e.getMessage());
             return "cadastrarFuncionarios";
         }
+    }
+
+    @ModelAttribute("todasAsGfts")
+    public List<Gft> todasAsGfts() {
+        return gftRepository.findAll();
     }
 }

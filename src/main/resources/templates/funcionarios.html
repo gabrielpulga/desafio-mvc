@@ -2,15 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>Funcionários</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-    <title>Funcionários</title>
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -22,16 +22,16 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Funcionarios</a>
+                <a class="nav-link" href="/wa/funcionarios">Funcionarios</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Vagas</a>
+                <a class="nav-link" href="/wa/vagas">Vagas</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Alocação</a>
+                <a class="nav-link" href="/wa/alocados/novo">Alocação</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Histórico</a>
+                <a class="nav-link" href="/wa/alocados">Histórico</a>
             </li>
         </ul>
     </div>
@@ -41,7 +41,7 @@
 <div class="card text-center">
     <div class="card-header">
         <h4 class="new-header">Funcionários em WA</h4>
-        <a class="btn btn-primary new-button">Cadastrar novo funcionário</a>
+        <a class="btn btn-primary new-button" href="/wa/funcionarios/novo">Cadastrar novo funcionário</a>
     </div>
     <div class="card-body">
 
@@ -81,10 +81,10 @@
             <tbody>
             <tr th:each="funcionario : ${funcionarios}" th:value="funcionario">
                 <td th:text="${funcionario.matricula}"></td>
+                <td th:text="${funcionario.nome}"></td>
                 <td th:text="${funcionario.cargo}"></td>
                 <td th:text="${funcionario.inicio_wa}"></td>
                 <td th:text="${funcionario.termino_wa}"></td>
-                <td th:text="${funcionario.nome}"></td>
             </tr>
             <tr>
                 <td colspan="6" th:if="${#lists.isEmpty(funcionarios)}">Nenhum funcionário foi encontrado.</td>

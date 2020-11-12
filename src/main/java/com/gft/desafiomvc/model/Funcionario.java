@@ -4,11 +4,16 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
-import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Funcionario {
+
+    private boolean alocado;
+
+    @ManyToMany
+    private List<Tecnologia> tecnologia;
 
     @ManyToOne
     private Vaga vaga;
@@ -18,7 +23,7 @@ public class Funcionario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private BigInteger id;
+    private Long id;
 
     @NotBlank(message = "Favor preencher cargo.")
     private String cargo;
@@ -39,6 +44,14 @@ public class Funcionario {
     @NotNull(message = "Previsão de término não pode ser nula")
     private Date termino_wa;
 
+    public boolean alocado() {
+        return alocado;
+    }
+
+    public void setAlocado(boolean alocado) {
+        alocado = alocado;
+    }
+
     public Vaga getVaga() {
         return vaga;
     }
@@ -55,11 +68,11 @@ public class Funcionario {
         this.gft = gft;
     }
 
-    public BigInteger getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigInteger id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
