@@ -59,7 +59,7 @@ public class alocadosController {
             funcionarioAlocado.setAlocado(true);
 
             Vaga vagaAlocada = vagasRepository.findByCodigo(codigo);
-            vagaAlocada.setQtd_vaga(vagaAlocada.getQtd_vaga() - 1);
+            vagaAlocada.setQtdVaga(vagaAlocada.getQtdVaga() - 1);
 
             funcionarioAlocado.setVaga(vagaAlocada);
 
@@ -68,7 +68,7 @@ public class alocadosController {
 
             redirectAttributes.addFlashAttribute("mensagem", "Funcionário alocado com sucesso.");
             return "redirect:/wa/alocados/novo";
-        } catch (IllegalArgumentException e) {
+        } catch (NullPointerException e) {
             return "alocar";
         }
     }

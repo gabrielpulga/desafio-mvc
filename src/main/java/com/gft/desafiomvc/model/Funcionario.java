@@ -44,12 +44,23 @@ public class Funcionario {
     @NotNull(message = "Previsão de término não pode ser nula")
     private Date termino_wa;
 
-    public boolean alocado() {
+    public Funcionario() {
+    }
+
+    public boolean isAlocado() {
         return alocado;
     }
 
     public void setAlocado(boolean alocado) {
-        alocado = alocado;
+        this.alocado = alocado;
+    }
+
+    public List<Tecnologia> getTecnologia() {
+        return tecnologia;
+    }
+
+    public void setTecnologia(List<Tecnologia> tecnologia) {
+        this.tecnologia = tecnologia;
     }
 
     public Vaga getVaga() {

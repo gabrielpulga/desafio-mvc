@@ -12,6 +12,18 @@ public class Tecnologia {
 
     private String nome;
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
+    public Tecnologia() {
+    }
+
+    public Tecnologia(String nome) {
+        this.nome = nome;
+    }
+
     public Long getId() {
         return id;
     }

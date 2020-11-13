@@ -33,7 +33,10 @@ public class Vaga {
     private String projeto;
 
     @NotNull(message = "Quantidade de vagas não pode ser nula.")
-    private int qtd_vaga;
+    private int qtdVaga;
+
+    public Vaga() {
+    }
 
     public Long getId() {
         return id;
@@ -75,11 +78,19 @@ public class Vaga {
         this.projeto = projeto;
     }
 
-    public int getQtd_vaga() {
-        return qtd_vaga;
+    public List<Tecnologia> getTecnologia() {
+        return tecnologia;
     }
 
-    public void setQtd_vaga(int qtd_vaga) {
-        this.qtd_vaga = qtd_vaga;
+    public void setTecnologia(List<Tecnologia> tecnologia) {
+        this.tecnologia = tecnologia;
+    }
+
+    public int getQtdVaga() {
+        return qtdVaga;
+    }
+
+    public void setQtdVaga(int qtdVaga) {
+        this.qtdVaga = qtdVaga;
     }
 }

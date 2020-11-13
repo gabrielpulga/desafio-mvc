@@ -2,8 +2,10 @@ package com.gft.desafiomvc.controller;
 
 import com.gft.desafiomvc.model.Funcionario;
 import com.gft.desafiomvc.model.Gft;
+import com.gft.desafiomvc.model.Tecnologia;
 import com.gft.desafiomvc.repository.FuncionariosRepository;
 import com.gft.desafiomvc.repository.GftRepository;
+import com.gft.desafiomvc.repository.TecnologiasRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
@@ -28,9 +30,13 @@ public class funcionarioController {
     @Autowired
     private GftRepository gftRepository;
 
+    @Autowired
+    private TecnologiasRepository tecnologiasRepository;
+
     @RequestMapping
     public ModelAndView pesquisar(@RequestParam(defaultValue = "" +
             "") String nome) {
+
         List<Funcionario> funcionarioList = funcionariosRepository.findFuncionariosByAlocadoIsFalseAndNomeIsContaining(nome);
 
         ModelAndView modelAndView = new ModelAndView("funcionarios");
@@ -68,5 +74,10 @@ public class funcionarioController {
     @ModelAttribute("todasAsGfts")
     public List<Gft> todasAsGfts() {
         return gftRepository.findAll();
+    }
+
+    @ModelAttribute("todasAsTecnologias")
+    public List<Tecnologia> todasAsTecnologias() {
+        return tecnologiasRepository.findAll();
     }
 }

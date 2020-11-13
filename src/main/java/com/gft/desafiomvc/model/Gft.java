@@ -1,8 +1,6 @@
 package com.gft.desafiomvc.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.math.BigInteger;
 import java.util.List;
@@ -14,6 +12,7 @@ public class Gft {
     private List<Funcionario> funcionarioList;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String cep;
@@ -22,6 +21,14 @@ public class Gft {
     private String estado;
     private String nome;
     private String telefone;
+
+    public Gft() {
+    }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
 
     public List<Funcionario> getFuncionarioList() {
         return funcionarioList;

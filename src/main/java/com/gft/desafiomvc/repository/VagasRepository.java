@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface VagasRepository extends JpaRepository<Vaga, Long> {
-    public List<Vaga> findVagasByProjetoContaining(String projeto);
+    public List<Vaga> findVagasByProjetoContainingAndQtdVagaIsGreaterThan(String projeto, int number);
     public Vaga findByCodigo(String codigo);
 
 }
